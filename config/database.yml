@@ -1,0 +1,9 @@
+development: &default
+  adapter: sqlite3
+  database: mediatest_development
+  pool: 5
+  timeout: 5000
+
+test:
+  <<: *default
+  database: mediatest_test

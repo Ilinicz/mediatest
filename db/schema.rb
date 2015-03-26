@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150323221034) do
+ActiveRecord::Schema.define(version: 20150326034754) do
 
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer  "priority",   default: 0, null: false
@@ -28,6 +28,29 @@ ActiveRecord::Schema.define(version: 20150323221034) do
   end
 
   add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority"
+
+  create_table "items", force: :cascade do |t|
+    t.string   "title"
+    t.string   "body"
+    t.integer  "media_collection_id"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+  end
+
+  add_index "items", ["media_collection_id"], name: "index_items_on_media_collection_id"
+
+  create_table "media_collections", force: :cascade do |t|
+    t.string   "title"
+    t.string   "description"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.integer  "user_id"
+    t.boolean  "shared",      default: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

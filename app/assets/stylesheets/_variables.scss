@@ -1,5 +1,5 @@
-// NProgress Color & hei
-$nprogress-color: $yellow;
+// NProgress Color & height
+$nprogress-color: $purple;
 $nprogress-height: 5px;
 //////////////////////////
 // Paper 3.3.4
@@ -18,11 +18,11 @@ $gray:                   #666;
 $gray-light:             #bbb;
 $gray-lighter:           lighten($gray-base, 93.5%); // #eee
 
-$brand-primary:         $blue;  //#0074D9; //#2196F3;
-$brand-success:         $green;  //#2ECC40; //#4CAF50;
-$brand-info:            $purple;//#B10DC9; //#9C27B0;
-$brand-warning:         $orange;//#FF851B; //#ff9800;
-$brand-danger:          $red;   //#ff4136; //#e51c23;
+$brand-primary:         $blue;  
+$brand-success:         $lime;  
+$brand-info:            $purple;
+$brand-warning:         $yellow;
+$brand-danger:          $red;   
 
 
 //== Scaffolding

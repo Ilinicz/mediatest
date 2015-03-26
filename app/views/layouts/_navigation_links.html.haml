@@ -1,0 +1,12 @@
+- if user_signed_in?
+  %ul.nav.navbar-nav
+    %li= link_to "My Collection", media_collection_path
+    %li= link_to "Add Item", new_item_media_collection_path
+  %ul.nav.navbar-nav.navbar-right
+    %li.navbar-right= link_to 'Logout', destroy_user_session_path, :method=>'delete'
+    %li.navbar-right= link_to 'Edit Account', edit_user_registration_path
+- else
+  %ul.nav.navbar-nav.navbar-right
+    %li= link_to 'Login', new_user_session_path
+    %li= link_to 'Register', new_user_registration_path
+    

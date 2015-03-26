@@ -1,0 +1,27 @@
+= simple_form_for @media_collection, url: media_collection_path, html: {multipart: true} do |f|
+  - if @media_collection.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@media_collection.errors.count, "error")} prohibited this media_collection from being saved:"
+      %ul
+        - @media_collection.errors.full_messages.each do |msg|
+          %li= msg
+  .col-sm-6.col-sm-offset-3
+    .panel.panel-default
+      .panel-heading.text-center Collection title & description
+      .panel-body      
+        .form-vertical
+          .form-group
+            = f.input :title, class: "form-control"
+          .form-group
+            = f.input :description, class: "form-control"
+          .checkbox
+            = f.input :shared, as: :boolean, label: false, inline_label: "Share?", hint: "Sharing will make your collection public and also visible to non-registered users."
+  .col-sm-10.col-sm-offset-1#items:
+    = f.simple_fields_for :items do |item|
+      = render 'item_fields', f: item, local: item
+    .links
+      = link_to_add_association "add item", f, :items, class: 'btn btn-info'
+    %hr
+  .col-sm-12      
+    .form-controls
+      = f.submit 'Save Collection', class: "btn btn-success btn-block"

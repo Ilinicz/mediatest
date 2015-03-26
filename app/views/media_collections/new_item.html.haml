@@ -1,0 +1,32 @@
+= simple_form_for :item, url: create_item_media_collection_path, html: {multipart: true} do |f|
+  -#- if f.object.errors.any?
+  -#  #error_explanation
+  -#    %h2= "#{pluralize(f.object.errors.count, "error")} prohibited this item from being saved:"
+  -#    %ul
+  -#      - f.object.errors.full_messages.each do |msg|
+  -#        %li= msg
+  .col-sm-12
+    %h3(style="font-variant:small-caps;") add item to collection
+    %hr
+    .panel.panel-default
+      .panel-heading Item
+      .panel-body 
+        .form-horizontal
+          .form-group
+            = f.label "Title", class: "col-sm-1 control-label"
+            .col-sm-2
+              = f.input_field :title, class: "form-control"
+            = f.label "Body", class: "col-sm-1 control-label"
+            .col-sm-4
+              = f.input_field :body, class: "form-control"
+            .col-sm-2
+              .input-group.pull-left
+                %span.input-group-btn
+                  %span.btn.btn-default.btn-file
+                    = fa_icon 'file'
+                    Photo
+                    = f.file_field :photo
+                %input(type='text' class='form-control' style="width:100px;" readonly)
+  .col-sm-12      
+    .form-controls
+      = f.submit 'Add Item', class: "btn btn-success btn-block"

@@ -5,17 +5,20 @@ ruby "2.2.0"
 gem "airbrake"                     #
 gem 'bootstrap-sass', '~> 3.3.4'   #            
 gem "coffee-rails", "~> 4.1.0"     # 
+gem "cocoon"                       #
 gem 'clrs'                         #  
+gem 'ffaker'                       # 
 gem "font-awesome-rails"           #                    
 gem "haml-rails"                   #      
-gem "delayed_job_active_record"    #                     
-gem "email_validator"              #           
+gem "delayed_job_active_record"    #    ~Suspenders/Bootstrap                    
+gem "email_validator"              #     /Common gems and others       
 gem "flutie"                       #  
 gem "high_voltage"                 #        
 gem "i18n-tasks"                   #      
-gem "jquery-rails"                 #    ~Suspenders+Bootstrap              
-gem "newrelic_rpm"                 #        
-gem "normalize-rails", "~> 3.0.0"  #                       
+gem "jquery-rails"                 #               
+gem "newrelic_rpm"                 #       
+gem "normalize-rails", "~> 3.0.0"  #
+gem "populate"                     #                       
 gem "rack-timeout"                 #        
 gem "rails", "4.2.0"               #          
 gem "recipient_interceptor"        #                  
@@ -25,18 +28,24 @@ gem "title"                        #
 gem "uglifier"                     #    
 gem "unicorn"                      #   
 
-###### SOME TURBOLINKS PLEASE #####
+##### TURBOLINKS PLEASE #####
 gem 'turbolinks'
 gem 'jquery-turbolinks'
 gem 'nprogress-rails'
-###### AUTH #####
+
+##### AUTH #####
 gem "devise"
+
+##### Photos #####
+gem "paperclip", "~> 4.2"
+
 
 group :development do
   gem "spring"
   gem "spring-commands-rspec"
   gem "web-console"
   gem 'rails_layout'
+  gem 'annotate', '~> 2.6.6'
 end
 
 group :development, :test do

@@ -1,0 +1,28 @@
+.nested-fields
+  .panel.panel-default
+    .panel-heading 
+      Item
+      = link_to_remove_association 'remove', f, class: 'btn btn-xs btn-danger pull-right'
+    .panel-body 
+      .form-horizontal
+        .form-group
+          = f.label "Title", class: "col-sm-1 control-label"
+          .col-sm-2
+            = f.input_field :title, class: "form-control"
+          = f.label "Body", class: "col-sm-1 control-label"
+          .col-sm-4
+            = f.input_field :body, class: "form-control"
+          .col-sm-2
+            .input-group.pull-left
+              %span.input-group-btn
+                %span.btn.btn-default.btn-file
+                  = fa_icon 'file'
+                  Photo
+                  = f.file_field :photo
+              %input(type='text' class='form-control' style="width:100px;" readonly)
+          - if f.object.photo.present?
+            .col-sm-2
+              .text-center current photo
+              = image_tag f.object.photo.url, size: "100"
+
+        

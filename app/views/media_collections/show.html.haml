@@ -1,0 +1,26 @@
+.row
+  %hr
+  .col-sm-4.col-sm-offset-2
+    %h2(style="font-variant:small-caps;margin-top:0;")
+      '#{@media_collection.title}'  
+      .small 
+        collection
+  .col-sm-4
+    .well
+      .btn-group.btn-group-lg.btn-group-justified
+        - if @media_collection.shared?
+          = link_to 'public link', shared_collection_path(@media_collection), class: 'btn btn-info', target: '_blank'
+        - else
+          = link_to 'Not shared', '#', class: 'btn btn-info disabled', target: '_blank'
+        = link_to 'Edit', edit_media_collection_path, class: 'btn btn-warning'
+
+  .col-sm-8.col-sm-offset-2
+    - @media_collection.items.each do |item|
+      .panel.panel-default
+        .panel-heading 
+          #{item.title} 
+          .pull-right Added #{time_ago_in_words(item.created_at)} ago
+        .panel-body      
+          #{item.body}
+          - if item.photo.present?
+            = image_tag item.photo.url

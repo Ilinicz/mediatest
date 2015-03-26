@@ -25,5 +25,6 @@
 //= require bootstrap-sprockets
 //= require nprogress
 //= require nprogress-turbolinks
+//= require cocoon
 //= require_tree .
 //= require turbolinks

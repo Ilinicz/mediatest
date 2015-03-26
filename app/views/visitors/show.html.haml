@@ -1,0 +1,17 @@
+.row 
+  .collection
+    .jumbotron
+      %h2(style="font-variant:small-caps;margin-top:0;")
+        '#{@shared_collection.title}'  
+        .small 
+          collection by #{@shared_collection.user.email}
+  - @shared_collection.items.each do |item|
+    .col-sm-8.col-sm-offset-2
+      .panel.panel-default
+        .panel-heading 
+          #{item.title}
+          .pull-right Added #{time_ago_in_words(item.created_at)} ago 
+        .panel-body      
+          #{item.body}
+          - if item.photo.present?
+            = image_tag item.photo.url

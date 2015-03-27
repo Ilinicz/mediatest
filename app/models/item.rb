@@ -13,9 +13,9 @@
 #  photo_file_size     :integer
 #  photo_updated_at    :datetime
 #
-
+require 'uri'
 class Item < ActiveRecord::Base
-
+  
   belongs_to :media_collection
   validates :media_collection, presence: true
 
@@ -23,5 +23,6 @@ class Item < ActiveRecord::Base
   validates_attachment_content_type :photo, :content_type => /\Aimage\/.*\Z/
   
   validates_presence_of :title, :body
+  validates_format_of :body, with: URI.regexp
 
 end

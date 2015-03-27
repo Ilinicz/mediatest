@@ -40,7 +40,7 @@ def make_items
   5.times do
     mcs.each do |mc|
       title = FFaker::Lorem.sentence(word_count=1)
-      body = FFaker::Lorem.sentence(word_count=2)
+      body = FFaker::Internet.http_url
       mc.items.create!(title: title, body: body )
     end
   end

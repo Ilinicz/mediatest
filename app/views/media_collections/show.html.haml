@@ -18,9 +18,9 @@
     - @media_collection.items.each do |item|
       .panel.panel-default
         .panel-heading 
-          #{item.title} 
-          .pull-right Added #{time_ago_in_words(item.created_at)} ago
+          #{item.media_collection.user.email} 
+          .text-muted.pull-right Added #{time_ago_in_words(item.created_at)} ago
         .panel-body      
-          #{item.body}
+          = link_to item.title, item.body, target: '_blank'
           - if item.photo.present?
             = image_tag item.photo.url

@@ -20,6 +20,8 @@ class MediaCollection < ActiveRecord::Base
   validates_presence_of :title, :description
   validates_associated :items
   
+
+  default_scope { order('created_at DESC') } 
   scope :shared, -> { where(shared: true) }
   
 end

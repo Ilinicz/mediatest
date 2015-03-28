@@ -1,40 +1,45 @@
-# Mediatest
+# Приложение Mediatest 
+## Тестовое задание для Eduson.tv
+#### https://mediatest-staging.herokuapp.com/
 
-## Getting Started
+####Задача: 
+>Необходимо реализовать медиа-коллекцию пользователя, состоящую из ссылок и картинок. 
+>Пользователь может войти, выйти, добавить что-то в коллекцию и поделиться ссылкой на коллекцию. 
+>Приложение должно быть оттестировано, используя Rspec. 
+>Все непонятные моменты можно решить на свое усмотрение и не забыть указать это.
 
-After you have cloned this repo, run this setup script to set up your machine
-with the necessary dependencies to run and test this app:
+При выполнении использованы:
 
-    % ./bin/setup
+  * Rails 4.2
+  * стартовый шаблон [Suspenders](https://github.com/thoughtbot/suspenders)
+  * Bootstrap 3 
+  * Devise
+  * Paperclip
+---
 
-It assumes you have a machine equipped with Ruby, Postgres, etc. If not, set up
-your machine with [this script].
+## Подробности
+### Я настоятельно рекомендую полазить на работающем приложении на Heroku и заглянуть в исходный код, вместо чтения всего ниженаписанного. 
 
-[this script]: https://github.com/thoughtbot/laptop
+На сайте есть пользователи. (User)
+Каждый пользователь has_one коллекцию. (MediaCollection)
+Каждая коллекция has_many элементов. (Item)
+За авторизацию отвечает гем Devise. После первичной регистрации пользователь перенаправляется на страницу редактирования своей, только что созданной, коллекции. Пока коллекция не будет сохранена - к ней невозможно добавить элементы или просмотреть ее.
 
-After setting up, you can run the application using [foreman]:
+Элементы к коллекции можно добавить как в разделе редактирования самой коллекции (гем Cocoon), так и по одному, в разделе добавления элемента (Add Item). Для этого добавлены методы `new_item` и `create_item` к `MediaCollectionsController`. 
 
-    % foreman start
+Каждый пользователь имеет доступ только к своей коллекции, разграничение прав основано на методе `current_user`, предоставляемом гемом Devise:
 
-If you don't have `foreman`, see [Foreman's install instructions][foreman]. It
-is [purposefully excluded from the project's `Gemfile`][exclude].
+    def set_media_collection
+      @media_collection = current_user.media_collection
+    end
 
-[foreman]: https://github.com/ddollar/foreman
-[exclude]: https://github.com/ddollar/foreman/pull/437#issuecomment-41110407
+В разделе редактирования коллекции пользователь может расшарить свою коллекцию - сделать ее публичной. Тогда коллекция будет отображаться на главной странице, к ней будут иметь доступ в том числе и незарегестрированные пользователи. 
+  
+    scope :shared, -> { where(shared: true) }
+    ...
+    @shared_collections = MediaCollection.preload(:user).shared
 
-## Guidelines
+---
+#### Тестирование
 
-Use the following guides for getting things done, programming well, and
-programming in style.
-
-* [Protocol](http://github.com/thoughtbot/guides/blob/master/protocol)
-* [Best Practices](http://github.com/thoughtbot/guides/blob/master/best-practices)
-* [Style](http://github.com/thoughtbot/guides/blob/master/style)
-
-## Deploying
-
-If you have previously run the `./bin/setup` script,
-you can deploy to staging and production with:
-
-    $ ./bin/deploy staging
-    $ ./bin/deploy production
+Большое большое белое пятно. Его пока что нет.

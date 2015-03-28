@@ -5,7 +5,7 @@ class VisitorsController < ApplicationController
   end
 
   def show
-    @shared_collection = MediaCollection.find_by_id(params[:id])
+    @shared_collection = MediaCollection.shared.find_by_id(params[:id])
   end
 
 end

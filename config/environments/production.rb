@@ -28,9 +28,13 @@ Rails.application.configure do
 
   config.cache_store = :dalli_store
 
-  client = Dalli::Client.new(ENV["MEMCACHIER_SERVERS"],
-                             value_max_bytes: 10485760,
-                             expires_in: 86400)
+  client = Dalli::Client.new((ENV["MEMCACHIER_SERVERS"] || "").split(","),
+                              :username => ENV["MEMCACHIER_USERNAME"],
+                              :password => ENV["MEMCACHIER_PASSWORD"],
+                              :failover => true,
+                              :socket_timeout => 1.5,
+                              :socket_failure_delay => 0.2,
+                              :value_max_bytes => 10485760)
   config.action_dispatch.rack_cache = {
     metastore:   client,
     entitystore: client

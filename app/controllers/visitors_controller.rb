@@ -1,7 +1,9 @@
 class VisitorsController < ApplicationController
 
   def index
-    @shared_collections = MediaCollection.preload(:user).shared
+    @shared_collections = Rails.cache.fetch(:@shared_collections) do
+      MediaCollection.preload(:user).shared
+    end
   end
 
   def show

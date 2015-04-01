@@ -28,6 +28,11 @@ gem "title"                        #
 gem "uglifier"                     #    
 gem "unicorn"                      #   
 
+##### CACHING #####
+gem "dalli"
+gem 'rack-cache'
+
+
 ##### TURBOLINKS PLEASE #####
 gem 'turbolinks'
 gem 'jquery-turbolinks'
@@ -70,6 +75,8 @@ group :test do
 end
 
 group :staging, :production do
-  gem "rails_stdout_logging"
+  #gem "rails_stdout_logging"
+  gem "memcachier"
+  gem "rails_12factor"
   gem "pg"
 end

@@ -25,6 +25,16 @@ Rails.application.configure do
   # Apache or NGINX already handles this.
   config.serve_static_files = ENV['RAILS_SERVE_STATIC_FILES'].present?
   config.static_cache_control = "public, max-age=#{1.year.to_i}"
+
+  config.cache_store = :dalli_store
+  
+  client = Dalli::CLient.new(ENV["MEMCACHIER_SERVERS"],
+                             value_max_bytes: 10485760,
+                             expires_in: 86400)
+  config.action_dispatch.rack_cache = {
+    metastore:   client,
+    entitystore: client
+  }
   # Enable deflate / gzip compression of controller-generated responses
   config.middleware.use Rack::Deflater
 

@@ -1,0 +1,10 @@
+- cache item do
+  .col-sm-8.col-sm-offset-2
+    .panel.panel-default
+      .panel-heading 
+        
+        .text-muted Added #{time_ago_in_words(item.created_at)} ago 
+      .panel-body      
+        = link_to item.title, item.body, target: '_blank'
+        - if item.photo.present?
+          = image_tag item.photo.url

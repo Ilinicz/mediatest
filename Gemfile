@@ -27,6 +27,7 @@ gem "simple_form"                  #
 gem "title"                        # 
 gem "uglifier"                     #    
 gem "unicorn"                      #   
+gem 'rack-mini-profiler'
 
 ##### CACHING #####
 gem "dalli"
@@ -56,7 +57,6 @@ group :development do
 end
 
 group :development, :test do
-  gem 'rack-mini-profiler'
   gem "awesome_print"
   gem "bundler-audit", require: false
   gem "byebug"

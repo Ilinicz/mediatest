@@ -1,4 +1,4 @@
-- cache @shared_collections do
+- cache @shared_collection do
   .row 
     .collection
       .jumbotron
@@ -6,13 +6,4 @@
           '#{@shared_collection.title}'  
           .small 
             collection by #{@shared_collection.user.email}
-    - @shared_collection.items.each do |item|
-      .col-sm-8.col-sm-offset-2
-        .panel.panel-default
-          .panel-heading 
-            
-            .text-muted Added #{time_ago_in_words(item.created_at)} ago 
-          .panel-body      
-            = link_to item.title, item.body, target: '_blank'
-            - if item.photo.present?
-              = image_tag item.photo.url
+    = render partial: 'item', collection: @shared_collection.items

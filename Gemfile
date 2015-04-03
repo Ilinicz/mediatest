@@ -51,6 +51,8 @@ group :development do
   gem "web-console"
   gem 'rails_layout'
   gem 'annotate', '~> 2.6.6'
+  gem 'quiet_assets'
+  gem "bullet"
 end
 
 group :development, :test do

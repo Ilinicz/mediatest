@@ -1,11 +1,12 @@
-- cache @shared_collections do
-  .jumbotron.text-center
-    %h1 Welcome!
-    %p Here you can create and share media-collection. 
-    %p Explore existing collections or register to create your own.
-    %p C'mon!
-    = fa_icon 'arrow-down 3x'
-  .row
+
+.jumbotron.text-center
+  %h1 Welcome!
+  %p Here you can create and share media-collection. 
+  %p Explore existing collections or register to create your own.
+  %p C'mon!
+  = fa_icon 'arrow-down 3x'
+.row
+  - cache @shared_collections do
     - @shared_collections.each do |collection|
       .col-sm-4
         .panel.panel-default

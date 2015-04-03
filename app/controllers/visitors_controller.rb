@@ -5,7 +5,12 @@ class VisitorsController < ApplicationController
   end
 
   def show
-    @shared_collection = MediaCollection.shared.find_by_id(params[:id])
+    collection = MediaCollection.shared.find_by_id(params[:id])
+    if collection 
+      @shared_collection = collection
+    else
+      redirect_to root_path, notice: "Oops, collection not shared."
+    end
   end
 
 end

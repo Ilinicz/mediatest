@@ -16,7 +16,7 @@
 require 'uri'
 class Item < ActiveRecord::Base
   
-  belongs_to :media_collection
+  belongs_to :media_collection, touch: true
   validates :media_collection, presence: true
 
   has_attached_file :photo
